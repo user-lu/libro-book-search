@@ -15,6 +15,6 @@ export function describe(state: RequestState<BookSearchResponse>): string {
     case "error":
       return state.message;
     case "success":
-      return `${state.data.numFound === 1}` ? " book found." : " books found.";
+      return `${state.data.numFound} ${state.data.numFound === 1 ? "book" : "books"} found.`;
   }
 }
