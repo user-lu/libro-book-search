@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { fetchJson } from "./api/fetchJson";
-import { describe, type RequestState } from "./types/requestState";
+import type { RequestState } from "./types/requestState";
 import type { BookSearchResponse } from "./types/openLibrary";
 import { useDebounce } from "./hooks/useDebounce";
-import { BookList } from "./components/BookList";
+import { SearchResults } from "./components/SearchResults";
 
 const MIN_QUERY_LENGTH = 3;
 
@@ -57,9 +57,7 @@ function App() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <p>{describe(state)}</p>
-
-      {state.status === "success" && <BookList books={state.data.docs} />}
+      <SearchResults state={state} />
     </>
   );
 }
