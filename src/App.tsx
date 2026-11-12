@@ -4,18 +4,26 @@ import { describe, type RequestState } from "./types/requestState";
 import type { BookSearchResponse } from "./types/openLibrary";
 import { useDebounce } from "./hooks/useDebounce";
 
+const MIN_QUERY_LENGTH = 3;
+
+function isSearchable(text: string): boolean {
+  return text.trim().length >= MIN_QUERY_LENGTH;
+}
+
 function App() {
   const [query, setQuery] = useState("");
   const [state, setState] = useState<RequestState<BookSearchResponse>>({
     status: "idle",
   });
-  const debouncedQuery = useDebounce(query, 400);
+  const debouncedQuery = useDebounce(query, 400).trim();
 
   useEffect(() => {
-    if (debouncedQuery === "") {
+    // Guard
+    if (!isSearchable(debouncedQuery)) {
       setState({ status: "idle" });
       return;
     }
+
     const controller = new AbortController();
 
     async function load() {
