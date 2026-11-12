@@ -3,6 +3,7 @@ import { fetchJson } from "./api/fetchJson";
 import { describe, type RequestState } from "./types/requestState";
 import type { BookSearchResponse } from "./types/openLibrary";
 import { useDebounce } from "./hooks/useDebounce";
+import { BookList } from "./components/BookList";
 
 const MIN_QUERY_LENGTH = 3;
 
@@ -57,6 +58,8 @@ function App() {
         onChange={(e) => setQuery(e.target.value)}
       />
       <p>{describe(state)}</p>
+
+      {state.status === "success" && <BookList books={state.data.docs} />}
     </>
   );
 }
