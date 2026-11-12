@@ -3,7 +3,6 @@ import { fetchJson } from "./api/fetchJson";
 import { describe, type RequestState } from "./types/requestState";
 import type { BookSearchResponse } from "./types/openLibrary";
 import { useDebounce } from "./hooks/useDebounce";
-import "./App.css";
 
 function App() {
   const [query, setQuery] = useState("");
