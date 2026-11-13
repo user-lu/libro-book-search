@@ -51,7 +51,7 @@ function App() {
 
   return (
     <>
-      <label htmlFor="book">Book</label>
+      <label htmlFor="book">Book Search</label>
       <input
         id="book"
         value={query}
