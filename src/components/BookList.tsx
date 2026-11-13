@@ -16,9 +16,9 @@ export function BookList({ books }: BookListProps) {
       {books.map((book) => (
         <li key={book.key}>
           {book.title} by {book.author_name?.join(", ") ?? "Unknown author"}
-          {book.first_publish_year
+          {book.first_publish_year !== undefined
             ? `, published ${book.first_publish_year}`
-            : ", Unknown"}
+            : ""}
           .
           {book.cover_i !== undefined ? (
             <img

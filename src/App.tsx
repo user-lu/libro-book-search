@@ -51,13 +51,21 @@ function App() {
 
   return (
     <>
-      <label htmlFor="book">Book Search</label>
-      <input
-        id="book"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
-      <SearchResults state={state} />
+      <header>
+        <h1>Libro Search</h1>
+      </header>
+      <main>
+        <label htmlFor="book">Search for Books</label>
+        <input
+          id="book"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <SearchResults state={state} />
+      </main>
+      <footer>
+        Data from <a href="https://openlibrary.org/">Open Library</a>
+      </footer>
     </>
   );
 }
