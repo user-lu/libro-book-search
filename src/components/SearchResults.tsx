@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import type { BookSearchResponse } from "../types/openLibrary";
 import type { RequestState } from "../types/requestState";
 import { BookList } from "./BookList";
@@ -6,7 +7,7 @@ interface SearchResultsProps {
   state: RequestState<BookSearchResponse>;
 }
 
-export function SearchResults({ state }: SearchResultsProps) {
+export function SearchResults({ state }: SearchResultsProps): ReactElement {
   switch (state.status) {
     case "idle":
       return <p>Type a book name to begin searching</p>;
@@ -23,7 +24,7 @@ export function SearchResults({ state }: SearchResultsProps) {
         <p>No books found.</p>
       ) : (
         <>
-          <p>
+          <p className="num-results">
             Showing {state.data.docs.length} of{" "}
             {state.data.numFound.toLocaleString()}
             {state.data.numFound === 1 ? " book" : " books"} found.

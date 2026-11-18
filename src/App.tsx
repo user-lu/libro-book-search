@@ -55,9 +55,9 @@ function App() {
         <h1>Libro Search</h1>
       </header>
       <main>
-        <label htmlFor="book">Search for Books</label>
+        <label htmlFor="book-search">Search for Books</label>
         <input
-          id="book"
+          id="book-search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />

@@ -12,26 +12,33 @@ function coverURL(coverId: number, size: CoverSize): string {
 
 export function BookList({ books }: BookListProps) {
   return (
-    <ul>
+    <ul className="book-list">
       {books.map((book) => (
-        <li key={book.key}>
-          {book.title} by {book.author_name?.join(", ") ?? "Unknown author"}
-          {book.first_publish_year !== undefined
-            ? `, published ${book.first_publish_year}`
-            : ""}
-          .
+        <li key={book.key} className="book-card">
           {book.cover_i !== undefined ? (
             <img
+              className="book-art"
               src={coverURL(book.cover_i, "S")}
               alt=""
               width={48}
               height={72}
-              style={{ objectFit: "cover" }}
               loading="lazy"
             />
           ) : (
-            <div aria-hidden="true">No Cover</div>
+            <div className="book-art book-art--empty" aria-hidden="true">
+              No Cover
+            </div>
           )}
+          <div className="book-text">
+            <p className="book-title">{book.title}</p>
+            <p className="book-meta">
+              by {book.author_name?.join(", ") ?? "Unknown author"}
+              {book.first_publish_year !== undefined
+                ? `, published ${book.first_publish_year}`
+                : ""}
+              .
+            </p>
+          </div>
         </li>
       ))}
     </ul>
