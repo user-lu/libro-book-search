@@ -39,7 +39,7 @@ I require `key` and `title`, and I mark `cover_i`, `author_name`, and `first_pub
 
 I use a `RequestState<T>` union, and an empty `docs` array stays on success instead of a fifth status. I rejected separate loading, error, and data flags, because they can all be true, while `data` and `message` exist only on their own arms.
 
-A missing case is a compile error only when the function has a declared return type. `describe(): string` failed with “Function lacks ending return statement.” Removing the success case from `SearchResults` still typechecks because that function has no return type.
+A missing case is a compile error only when the function has a declared return type. `describe(): string` failed with “Function lacks ending return statement” when I added a fifth status, because that return type excluded `undefined`. I added an explicit `ReactElement` return type to `SearchResults`, and removing a case then produced the same error.
 
 ## What I learned
 
